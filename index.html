@@ -98,16 +98,14 @@
             </div>
             <div class="card-content">
                <article class="battery-card">
-                  <h1 class="battery-title">micro:bit Battery Status</h1>
+                  <h1 class="battery-title">Battery Status</h1>
                   <div class="battery-box">
                      <strong class="battery-percentage"></strong>
                      <i class="battery"></i>
                   </div>
                   <dl class="battery-info">
-                     <dt>Power Source</dt>
-                     <dd class="battery-status">---</dd>
-                     <dt>Level percentage</dt>
-                     <dd class="battery-level">---</dd>
+                     <strong>Power Source:</strong>
+                     <strong class="battery-status"> - </strong>
                   </dl>
                </article>
                </duv>
@@ -143,7 +141,7 @@
             let cmd;
 
             let battery;
-            let percentage;
+            let percentage = '0%';
             let charging;
             let lastMessageSent;
 
@@ -154,7 +152,6 @@
               document.styleSheets[0].insertRule('.battery:before{width:' + percentage + '}', 0);
               document.querySelector('.battery-percentage').innerHTML = percentage;
               document.querySelector('.battery-status').innerHTML = charging ? 'Adapter' : 'Battery';
-              document.querySelector('.battery-level').innerHTML = percentage;
             }
 
             function showBatteryStatus() {
@@ -284,14 +281,13 @@
                     charging = false;
                   }
                   if (value == 256) {
-                    percentage = '50%';
+                    percentage = '20%';
                     charging = false;
                   }
                   if (value < 256) {
-                    percentage = '20%'
+                    percentage = '10%'
                     charging = false;
                   }
-
                   udpateBattery(percentage, charging);
                 }
 
